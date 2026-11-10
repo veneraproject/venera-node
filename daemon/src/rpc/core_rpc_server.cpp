@@ -870,8 +870,8 @@ if (res.height > 0)
       {
         res.blocks.resize(res.blocks.size()+1);
         res.blocks.back().pruned = req.prune;
-        res.blocks.back().block = bd.first.first;
-        size += bd.first.first.size();
+        res.blocks.back().block = std::move(bd.first.first);
+        size += res.blocks.back().block.size();
         res.output_indices.push_back(COMMAND_RPC_GET_BLOCKS_FAST::block_output_indices());
         ntxes += bd.second.size();
         res.output_indices.back().indices.reserve(1 + bd.second.size());
@@ -880,9 +880,7 @@ if (res.height > 0)
         res.blocks.back().txs.reserve(bd.second.size());
         for (std::vector<std::pair<crypto::hash, cryptonote::blobdata>>::iterator i = bd.second.begin(); i != bd.second.end(); ++i)
         {
-          res.blocks.back().txs.push_back({std::move(i->second), crypto::null_hash});
-          i->second.clear();
-          i->second.shrink_to_fit();
+          res.blocks.back().txs.emplace_back(std::move(i->second), crypto::null_hash);
           size += res.blocks.back().txs.back().blob.size();
         }
 
@@ -1196,7 +1194,7 @@ if (res.height > 0)
             ++found_in_pool;
           }
         }
-        txs = sorted_txs;
+        txs = std::move(sorted_txs);
       }
       LOG_PRINT_L2("Found " << found_in_pool << "/" << vh.size() << " transactions in the pool");
     }
