@@ -46,7 +46,7 @@ Features include:
 
 | Service | Default | Role |
 | --- | --- | --- |
-| Venera seed peer | `120.25.94.32:29929` | P2P blockchain synchronization. |
+| Venera seed peer | `194.87.197.1:29929` | P2P blockchain synchronization. |
 | Local node RPC | `http://127.0.0.1:29930` | Blockchain access for wallets. |
 | Managed wallet RPC | Available loopback HTTPS port | Temporary wallet operations; the CLI generates session credentials and a TLS identity. |
 | BSC RPC | `https://bsc-dataseed.binance.org/` | BSC balances, gas estimates and signed-transaction broadcast. |
