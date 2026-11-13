@@ -3,7 +3,7 @@
 #include <limits>
 
 namespace cryptonote {
-constexpr uint64_t VENERA_REWARD_BURN_HEIGHT = 572960;
+constexpr uint64_t VENERA_REWARD_BURN_HEIGHT = 574964;
 
 inline bool split_mining_reward(uint64_t height, uint64_t base_reward, uint64_t fee,
                                 uint64_t &miner_amount, uint64_t &burned)
